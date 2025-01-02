@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix Rain</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas to full screen
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const fontSize = 16;
+    const columns = Math.floor(canvas.width / fontSize);
+
+    // Create an array of drops
+    const drops = Array(columns).fill(1);
+
+    const drawMatrixRain = () => {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0f0"; // Green text
+      ctx.font = `${fontSize}px monospace`;
+
+      drops.forEach((y, x) => {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        ctx.fillText(text, x * fontSize, y * fontSize);
+
+        // Randomly reset the drop
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[x] = 0;
+        }
+
+        // Increment Y coordinate
+        drops[x]++;
+      });
+    };
+
+    setInterval(drawMatrixRain, 50);
+
+    // Adjust canvas on resize
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drops.length = Math.floor(canvas.width / fontSize);
+      drops.fill(1);
+    });
+  </script>
+</body>
+</html>

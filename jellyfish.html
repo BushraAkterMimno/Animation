@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Jellyfish</title>
+  <style>
+    body {
+      margin: 0;
+      background: #001f3f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .jellyfish {
+      position: relative;
+      width: 100px;
+      height: 150px;
+      animation: float 3s infinite ease-in-out;
+    }
+
+    .head {
+      width: 100px;
+      height: 80px;
+      background: radial-gradient(circle at center, #ff99cc, #ff66cc);
+      border-radius: 50% 50% 0 0;
+      position: absolute;
+      top: 0;
+      overflow: hidden;
+    }
+
+    .tentacles {
+      position: absolute;
+      width: 100px;
+      height: 70px;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .tentacle {
+      width: 10px;
+      height: 70px;
+      background: linear-gradient(to bottom, #ff99cc, transparent);
+      border-radius: 5px;
+      animation: wave 2s infinite ease-in-out;
+    }
+
+    .tentacle:nth-child(2n) {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(-10px);
+      }
+      50% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes wave {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(20deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="jellyfish">
+    <div class="head"></div>
+    <div class="tentacles">
+      <div class="tentacle"></div>
+      <div class="tentacle"></div>
+      <div class="tentacle"></div>
+      <div class="tentacle"></div>
+    </div>
+  </div>
+  <script>
+    // আপনি চাইলে আরও অ্যানিমেশন যুক্ত করতে পারেন!
+  </script>
+</body>
+</html>
