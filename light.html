@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light On-Off</title>
+    <style>
+        body {
+            background-color: #1d1e22;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .bulb-container {
+            width: 300px;
+            height: 500px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: swing 3s ease-in-out infinite;
+            transform-origin: top;
+        }
+        .wire {
+            height: 250px;
+            width: 4px;
+            background-color: black;
+        }
+        .connector {
+            background-color: #292929;
+            width: 30px;
+            height: 30px;
+            border-radius: 2px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .grove {
+            background-color: #424242;
+            height: 3px;
+            width: 34px;
+        }
+        .bulb {
+            margin-top: -2px;
+            width: 92px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background-color: #ffeb00;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        @keyframes swing {
+            0% {
+                transform: rotate(15deg);
+            }
+            50% {
+                transform: rotate(-15deg);
+            }
+            100% {
+                transform: rotate(15deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bulb-container">
+        <div class="wire"></div>
+        <div class="connector">
+            <div class="grove"></div>
+            <div class="grove"></div>
+            <div class="grove"></div>
+        </div>
+        <div class="bulb"></div>
+    </div>
+
+    <script>
+        const bulb = document.querySelector('.bulb');
+        let isLightOn = true;
+
+        function toggleLight() {
+            if (isLightOn) {
+                bulb.style.backgroundColor = "rgba(255,255,255,0.1)";
+                bulb.style.boxShadow = "none";
+            } else {
+                bulb.style.backgroundColor = "#ffeb00";
+                bulb.style.boxShadow = "0px 0px 150px 75px rgba(245,223,77,1)";
+            }
+            isLightOn = !isLightOn;
+        }
+
+        bulb.addEventListener('click', toggleLight);
+    </script>
+</body>
+</html>
